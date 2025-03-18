@@ -1,0 +1,12 @@
+<mat-toolbar class="toolbar">
+  <span>Simple Weather</span>
+  <span class="spacer"></span>
+  <button mat-icon-button class="close-btn" (click)="onClose()">
+    <mat-icon>close</mat-icon>
+  </button>
+</mat-toolbar>
+
+<div class="container">
+  <label for="name">Find the weather for other cities:</label>
+  <input id="name" [(ngModel)]="name" placeholder="Search for a city" />
+</div>
