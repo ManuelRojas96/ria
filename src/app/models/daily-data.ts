@@ -3,5 +3,5 @@ export interface DailyData {
   description: string;
   maxTemp: number;
   minTemp: number;
-  icon: string;
+  iconId: string;
 }
