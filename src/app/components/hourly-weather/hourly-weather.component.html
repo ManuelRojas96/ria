@@ -1,7 +1,10 @@
 <div class="weather-card">
   <span class="title">Next hours</span>
   <hr />
-  <div class="weather-info" *ngIf="data && data.length">
+  <div class="error-msg" *ngIf="showErrorMessage">
+    <span>Weather data couldn't be load. Try again later</span>
+  </div>
+  <div class="weather-info" *ngIf="data && data.length && !showErrorMessage">
     <div class="hour" *ngFor="let entry of data">
       <span>{{ entry.temperature }}°</span>
       <span class="rain-chance">{{ entry.rainChance }}%</span>
