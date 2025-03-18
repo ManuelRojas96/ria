@@ -6,6 +6,7 @@ import { getFormattedTime } from '../../utils';
 import { City } from '../../models/city';
 import { WeatherRequesterService } from '../../services/weather-requester.service';
 import { Subject, takeUntil } from 'rxjs';
+import { HOURLY_DATA } from '../../default/dummy-hourly-data';
 
 @Component({
   selector: 'app-hourly-weather',
@@ -19,60 +20,26 @@ export class HourlyWeatherComponent implements OnInit, OnDestroy {
   @Input() city!: City;
 
   data: HourlyData[] = [];
+  showErrorMessage = false;
 
   constructor(private _weatherRequesterService: WeatherRequesterService) {}
 
   ngOnInit(): void {
-    this._weatherRequesterService
+    /* this._weatherRequesterService
       .getHourlyWeatherData(this.city.lat, this.city.lon, 10)
       .pipe(takeUntil(this.destroy))
       .subscribe({
         next: (response) => {
+          showErrorMessage = false;
           this.data = response;
         },
-      });
-    //this.getDummyData();
+        error: (e) => {showErrorMessage = true;}
+      }); */
+    this.getDummyData();
   }
 
   private getDummyData(): void {
-    this.data = [
-      {
-        timestamp: 1633024800,
-        temperature: 20,
-        rainChance: 0.1,
-        iconId: '01d',
-      },
-      {
-        timestamp: 1633024800,
-        temperature: 20,
-        rainChance: 0.1,
-        iconId: '03d',
-      },
-      {
-        timestamp: 1633024800,
-        temperature: 20,
-        rainChance: 0.1,
-        iconId: '10d',
-      },
-      {
-        timestamp: 1633024800,
-        temperature: 20,
-        rainChance: 0.1,
-        iconId: '01d',
-      },
-      {
-        timestamp: 1633024800,
-        temperature: 20,
-        rainChance: 0.1,
-        iconId: '03d',
-      },
-      {
-        timestamp: 1633024800,
-        temperature: 20,
-        rainChance: 0.1,
-        iconId: '10d',
-      },
-    ];
+    this.data = HOURLY_DATA;
   }
 
   ngOnDestroy(): void {
