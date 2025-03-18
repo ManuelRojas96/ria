@@ -23,18 +23,18 @@ export class HourlyWeatherComponent implements OnInit, OnDestroy {
   constructor(private _weatherRequesterService: WeatherRequesterService) {}
 
   ngOnInit(): void {
-    /* this._weatherRequesterService
+    this._weatherRequesterService
       .getHourlyWeatherData(this.city.lat, this.city.lon, 10)
       .pipe(takeUntil(this.destroy))
       .subscribe({
         next: (response) => {
           this.data = response;
         },
-      }); */
-    this.getDummyData();
+      });
+    //this.getDummyData();
   }
 
-  getDummyData(): void {
+  private getDummyData(): void {
     this.data = [
       {
         timestamp: 1633024800,
