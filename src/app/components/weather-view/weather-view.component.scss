@@ -1,0 +1,66 @@
+.spacer {
+  flex: 1 1 auto;
+}
+
+.search-btn {
+  border: none;
+  background: none;
+  color: white;
+
+  &:hover {
+    opacity: 0.6;
+  }
+}
+
+.weather-card {
+  padding: 16px;
+  background: white;
+  margin: 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.weather-info {
+  display: flex;
+  justify-content: space-around;
+}
+
+.hour {
+  text-align: center;
+}
+
+.toolbar {
+  background-color: rgb(17, 113, 169);
+  color: white;
+}
+
+.background {
+  background-image: url("../../assets/bg-pattern.jpg");
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  height: 100vh;
+  padding: 1rem;
+}
+
+.refresh-btn {
+  align-self: flex-end;
+  border: none;
+  background: none;
+  height: 1rem;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  z-index: 100;
+  background-color: rgb(17, 113, 169);
+  width: 100%;
+  padding: 0.4rem;
+  display: flex;
+
+  span {
+    float: right;
+    color: white;
+  }
+}

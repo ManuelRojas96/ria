@@ -1,0 +1,25 @@
+<mat-toolbar class="toolbar">
+  <span>Simple Weather</span>
+  <span class="spacer"></span>
+  <button mat-icon-button class="search-btn" (click)="onSearch()">
+    <mat-icon>search</mat-icon>
+  </button>
+</mat-toolbar>
+
+<mat-tab-group>
+  @for(city of defaultCities; track city.name) {
+  <mat-tab [label]="city.name.toUpperCase()">
+    <div class="background">
+      <app-hourly-weather [city]="city"></app-hourly-weather>
+      <app-daily-weather [city]="city"></app-daily-weather>
+      <button mat-icon-button class="refresh-btn" (click)="onRefresh()">
+        <mat-icon>refresh</mat-icon>
+      </button>
+    </div>
+  </mat-tab>
+  }
+</mat-tab-group>
+
+<div class="footer">
+  <span> Last update: {{ lastUpdateTime }} </span>
+</div>
