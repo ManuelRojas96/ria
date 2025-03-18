@@ -1,0 +1,38 @@
+.weather-card {
+  padding: 16px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.daily-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.day {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-top: 1px solid #e0e0e0;
+}
+
+.day:first-child {
+  border-top: none;
+}
+
+mat-icon {
+  margin-right: 8px;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid grey;
+}
