@@ -6,13 +6,35 @@
   </div>
   <div class="daily-info" *ngIf="data && data.length">
     <div class="day" *ngFor="let entry of data">
-      <mat-icon *ngIf="entry.icon === 'sunny'">wb_sunny</mat-icon>
-      <mat-icon *ngIf="entry.icon === 'cloudy'">cloud</mat-icon>
-      <div>
-        <span>{{ entry.date }}</span>
-        <span>{{ entry.description }}</span>
-      </div>
-      <span>{{ entry.maxTemp }}° / {{ entry.minTemp }}°</span>
+      <ng-container
+        *ngTemplateOutlet="weatherItem; context: { $implicit: entry }"
+      >
+      </ng-container>
     </div>
   </div>
 </div>
+
+<ng-template #weatherItem let-data>
+  <div class="daily-weather-container">
+    <div>
+      <img
+        [src]="getIcon(data.iconId)"
+        alt="weather icon"
+        width="40"
+        height="40"
+      />
+    </div>
+    <div class="general-description">
+      <span class="date-text">
+        {{ data.date | date : "EEE, MMM d" }}
+      </span>
+      <span class="data-description">
+        {{ data.description }}
+      </span>
+    </div>
+    <div class="degrees-container">
+      <span>{{ data.maxTemp }}°</span>
+      <span>{{ data.minTemp }}°</span>
+    </div>
+  </div>
+</ng-template>

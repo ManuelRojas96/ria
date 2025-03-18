@@ -40,3 +40,30 @@ hr {
 .error-msg {
   color: red;
 }
+
+.daily-weather-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.general-description {
+  flex-grow: 1;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.date-text {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.data-description {
+}
+
+.degrees-container {
+  font-weight: bold;
+  display: flex;
+  gap: 16px;
+}

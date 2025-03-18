@@ -5,6 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { City } from '../../models/city';
 import { WeatherRequesterService } from '../../services/weather-requester.service';
 import { Subject, takeUntil } from 'rxjs';
+import { DAILY_FORECAST } from '../../default/dummy-daily-data';
 
 @Component({
   selector: 'app-daily-weather',
@@ -23,7 +24,7 @@ export class DailyWeatherComponent implements OnInit {
   constructor(private _weatherRequesterService: WeatherRequesterService) {}
 
   ngOnInit(): void {
-    this._weatherRequesterService
+    /* this._weatherRequesterService
       .getDailyWeatherData(this.city.lat, this.city.lon, 10)
       .pipe(takeUntil(this.destroy))
       .subscribe({
@@ -34,6 +35,15 @@ export class DailyWeatherComponent implements OnInit {
         error: (e) => {
           this.showErrorMessage = true;
         },
-      });
+      }); */
+    this.getDummyData();
+  }
+
+  getDummyData() {
+    this.data = DAILY_FORECAST;
+  }
+
+  getIcon(iconId: string): string {
+    return `https://cdn.weatherbit.io/static/img/icons/${iconId}.png`;
   }
 }
