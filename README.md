@@ -4,7 +4,7 @@ This project was generated using [Angular CLI](https://github.com/angular/angula
 
 ## Adding API Keys
 
-There are two environment files located in the environments folder: `environment.development.ts.template` and `environment.ts.template`. To be able to use the weather API, both files should be used to create `environment.development.ts` and `environment.ts`. Within them, the `"API_KEY_HERE"` string should be replaced by the provided OpenWeather's API Key.
+There are two environment files located in the environments folder: `environment.development.ts.template` and `environment.ts.template`. To be able to use the weather API, both files should be used to create `environment.development.ts` and `environment.ts`. Within them, the `"API_KEY_HERE"` string must be replaced by the provided OpenWeather's API Key.
 
 ## Development server
 
