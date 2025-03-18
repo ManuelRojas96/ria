@@ -1,9 +1,10 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { DailyData } from '../../models/daily-data';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { City } from '../../models/city';
 import { WeatherRequesterService } from '../../services/weather-requester.service';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-daily-weather',
@@ -11,10 +12,28 @@ import { WeatherRequesterService } from '../../services/weather-requester.servic
   templateUrl: './daily-weather.component.html',
   styleUrl: './daily-weather.component.scss',
 })
-export class DailyWeatherComponent {
+export class DailyWeatherComponent implements OnInit {
+  private destroy = new Subject<void>();
+
   @Input() city!: City;
 
   data: DailyData[] = [];
+  showErrorMessage = true;
 
   constructor(private _weatherRequesterService: WeatherRequesterService) {}
+
+  ngOnInit(): void {
+    this._weatherRequesterService
+      .getDailyWeatherData(this.city.lat, this.city.lon, 10)
+      .pipe(takeUntil(this.destroy))
+      .subscribe({
+        next: (response) => {
+          this.showErrorMessage = false;
+          this.data = response;
+        },
+        error: (e) => {
+          this.showErrorMessage = true;
+        },
+      });
+  }
 }

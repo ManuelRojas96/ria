@@ -1,6 +1,9 @@
 <div class="weather-card">
   <span class="title">Next 5 days</span>
   <hr />
+  <div class="error-msg" *ngIf="showErrorMessage">
+    <span>Weather data couldn't be load. Try again later</span>
+  </div>
   <div class="daily-info" *ngIf="data && data.length">
     <div class="day" *ngFor="let entry of data">
       <mat-icon *ngIf="entry.icon === 'sunny'">wb_sunny</mat-icon>
