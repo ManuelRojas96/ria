@@ -1,0 +1,36 @@
+.weather-card {
+  padding: 16px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.weather-info {
+  display: flex;
+  justify-content: space-around;
+  overflow-x: scroll;
+}
+
+.hour {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.rain-chance {
+  color: rgb(31, 170, 170);
+}
+
+.time {
+  color: grey;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid grey;
+}
