@@ -72,16 +72,7 @@ export class WeatherRequesterService {
       .get(`${this.weatherBitBaseUrl}${endpoint}`, { params })
       .pipe(
         map((response: any) => {
-          const rawFiveDaysWeather = response.data.slice(0, 5);
-          const fiveDaysWeather = rawFiveDaysWeather.map((entry: any) => {
-            const date = entry['datetime'];
-            const description = entry['weather']?.['description'];
-            const iconId = entry['weather']?.['icon'];
-            const minTemp = entry['min_temp'];
-            const maxTemp = entry['max_temp'];
-            return { date, description, iconId, minTemp, maxTemp };
-          });
-          return fiveDaysWeather;
+          return this.parseWeatherBitResponse(response);
         })
       );
   }
@@ -102,17 +93,25 @@ export class WeatherRequesterService {
       .get(`${this.weatherBitBaseUrl}${endpoint}`, { params })
       .pipe(
         map((response: any) => {
-          const rawFiveDaysWeather = response.data.slice(0, 5);
-          const fiveDaysWeather = rawFiveDaysWeather.map((entry: any) => {
-            const date = entry['datetime'];
-            const description = entry['weather']?.['description'];
-            const iconId = entry['weather']?.['icon'];
-            const minTemp = entry['min_temp'];
-            const maxTemp = entry['max_temp'];
-            return { date, description, iconId, minTemp, maxTemp };
-          });
-          return fiveDaysWeather;
+          return this.parseWeatherBitResponse(response);
         })
       );
+  }
+
+  private parseSingleDay(entry: any): DailyData {
+    const date = entry['datetime'];
+    const description = entry['weather']?.['description'];
+    const iconId = entry['weather']?.['icon'];
+    const minTemp = entry['min_temp'];
+    const maxTemp = entry['max_temp'];
+    return { date, description, iconId, minTemp, maxTemp };
+  }
+
+  private parseWeatherBitResponse(response: any): DailyData[] {
+    const rawFiveDaysWeather = response.data.slice(0, 5);
+    const fiveDaysWeather = rawFiveDaysWeather.map((entry: any) => {
+      return this.parseSingleDay(entry);
+    });
+    return fiveDaysWeather;
   }
 }
