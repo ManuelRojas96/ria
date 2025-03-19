@@ -8,5 +8,14 @@
 
 <div class="container">
   <label for="name">Find the weather for other cities:</label>
-  <input id="name" [(ngModel)]="name" placeholder="Search for a city" />
+  <input
+    id="name"
+    [(ngModel)]="cityName"
+    placeholder="Search for a city"
+    (keyup.enter)="onEnter()"
+  />
+  <app-daily-weather
+    *ngIf="showResults"
+    [data]="searchResultData"
+  ></app-daily-weather>
 </div>
