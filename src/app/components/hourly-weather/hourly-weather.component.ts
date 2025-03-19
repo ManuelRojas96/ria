@@ -25,17 +25,18 @@ export class HourlyWeatherComponent implements OnInit, OnDestroy {
   constructor(private _weatherRequesterService: WeatherRequesterService) {}
 
   ngOnInit(): void {
-    /* this._weatherRequesterService
+    this._weatherRequesterService
       .getHourlyWeatherData(this.city.lat, this.city.lon, 10)
       .pipe(takeUntil(this.destroy))
       .subscribe({
         next: (response) => {
-          showErrorMessage = false;
+          this.showErrorMessage = false;
           this.data = response;
         },
-        error: (e) => {showErrorMessage = true;}
-      }); */
-    this.getDummyData();
+        error: (e) => {
+          this.showErrorMessage = true;
+        },
+      });
   }
 
   private getDummyData(): void {
