@@ -54,7 +54,7 @@ export class WeatherRequesterService {
       );
   }
 
-  getDailyWeatherData(
+  getDailyWeatherDataByCoordinates(
     latitude: number,
     longitude: number,
     amount: number = 5,
@@ -66,6 +66,36 @@ export class WeatherRequesterService {
     const params = new HttpParams()
       .set('lat', latitude.toString())
       .set('lon', longitude.toString())
+      .set('key', this.weatherBitApiId);
+
+    return this._http
+      .get(`${this.weatherBitBaseUrl}${endpoint}`, { params })
+      .pipe(
+        map((response: any) => {
+          const rawFiveDaysWeather = response.data.slice(0, 5);
+          const fiveDaysWeather = rawFiveDaysWeather.map((entry: any) => {
+            const date = entry['datetime'];
+            const description = entry['weather']?.['description'];
+            const iconId = entry['weather']?.['icon'];
+            const minTemp = entry['min_temp'];
+            const maxTemp = entry['max_temp'];
+            return { date, description, iconId, minTemp, maxTemp };
+          });
+          return fiveDaysWeather;
+        })
+      );
+  }
+
+  getDailyWeatherDataByCityName(
+    cityName: string,
+    amount: number = 5,
+    units: MeasurementUnit = 'metric',
+    lang: string = 'es'
+  ): Observable<DailyData[]> {
+    const endpoint = '/forecast/daily';
+
+    const params = new HttpParams()
+      .set('city', cityName)
       .set('key', this.weatherBitApiId);
 
     return this._http
